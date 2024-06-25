@@ -2,7 +2,7 @@ import React from "react";
 
 import { useNavigate } from "react-router";
 
-const checkoutPage = () => {
+const CheckoutPage = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate("/menu");
@@ -11,7 +11,7 @@ const checkoutPage = () => {
   // Render the component
   return (
     <div className="welcomePage">
-      <h1>Welcome to Food's Kitchen</h1>
+      <h1>thankyou for shopping, please visit us again</h1>
 
       <button className="btn" onClick={handleClick}>
         Go to menu
@@ -20,4 +20,4 @@ const checkoutPage = () => {
   );
 };
 
-export default checkoutPage;
+export default CheckoutPage;

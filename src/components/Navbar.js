@@ -7,15 +7,6 @@ import { clearCart } from "../data/store/cartSlice";
 const Navbar = () => {
   const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  console.log(cart);
-
-  // var arr = [2, 3, 1, 3, 4, 5, 3, 1];
-
-  const hamburger = function getOccurrence(cart, value) {
-    var count = 0;
-    cart.forEach((v) => v === value && count++);
-    return count;
-  };
 
   let total = 0;
   cart.forEach((item) => {
@@ -35,7 +26,7 @@ const Navbar = () => {
   function handleCheckout() {
     let elem = document.querySelector(".model");
     elem.classList.toggle("hide");
-    dispatch(clearCart);
+    dispatch(clearCart());
     navigate("/checkout");
   }
   return (
@@ -66,14 +57,12 @@ const Navbar = () => {
           {cart.length > 0 &&
             cart.map((item) => {
               return (
-                <>
-                  <div key={item.name} className="list">
-                    <div>
-                      {item.name} {item.price}
-                    </div>
-                    <div>{item.quantity}</div>
+                <div key={item.name} className="list">
+                  <div>
+                    {item.name} {item.price}
                   </div>
-                </>
+                  <div>{item.quantity}</div>
+                </div>
               );
             })}
           {

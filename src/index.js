@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Welcome from "./components/Welcome";
 import { Provider } from "react-redux";
 import store from "./data/store/store";
+import CheckoutPage from "./components/CheckoutPage.js";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <checkoutPage />,
+        element: <CheckoutPage />,
       },
     ],
   },
