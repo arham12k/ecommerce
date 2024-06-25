@@ -8,15 +8,20 @@ const Navbar = () => {
   const { cart } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  let total = 0;
-  cart.forEach((item) => {
-    total += Number(item.price);
-  });
-
   function showModel() {
     let elem = document.querySelector(".model");
     elem.classList.toggle("hide");
   }
+
+  const hamburger = cart.filter((elem) => elem.name === "Hamburger");
+  const Fries = cart.filter((elem) => elem.name === "Fries");
+  const Coke = cart.filter((elem) => elem.name === "Coke");
+  const Pepsi = cart.filter((elem) => elem.name === "Pepsi");
+  let totalSum = 0;
+  const totalArray = [...hamburger, ...Coke, ...Pepsi, ...Fries];
+  totalArray.forEach((item) => {
+    totalSum += Number(item.price);
+  });
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -54,20 +59,37 @@ const Navbar = () => {
       <div className="model hide">
         <div>
           <p>Order Summary</p>
-          {cart.length > 0 &&
-            cart.map((item) => {
-              return (
-                <div key={item.name} className="list">
+          {cart.length > 0 && (
+            <div className="list">
+              <div>
+                {/* hamburger 50 * {hamburger.length} = {50 * hamburger.length} */}
+                {hamburger.length > 0 && (
                   <div>
-                    {item.name} {item.price}
+                    {hamburger[0].name} {hamburger.length} * 200 ={" "}
+                    {200 * hamburger.length}
                   </div>
-                  <div>{item.quantity}</div>
-                </div>
-              );
-            })}
+                )}
+                {Pepsi.length > 0 && (
+                  <div>
+                    {Pepsi[0].name} {Pepsi.length} * 50 = {50 * Pepsi.length}
+                  </div>
+                )}
+                {Fries.length > 0 && (
+                  <div>
+                    {Fries[0].name} {Fries.length} * 100 = {100 * Fries.length}
+                  </div>
+                )}
+                {Coke.length > 0 && (
+                  <div>
+                    {Coke[0].name} {Coke.length} * 50 = {50 * Coke.length}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
           {
             <div className="total">
-              your total is {total}{" "}
+              your total is {totalSum}
               <button className="btn" onClick={handleCheckout}>
                 checkout
               </button>
