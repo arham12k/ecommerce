@@ -10,14 +10,12 @@ const cartSlice = createSlice({
       state.cart = [...state.cart, action.payload];
     },
     deleteData: (state, action) => {
-      console.log(action.payload);
+      const first = state.cart.find((item) => item.name === action.payload);
 
-      state.cart = state.cart.filter((item) => item.name !== action.payload);
-      console.log(state.cart);
+      state.cart = state.cart.filter((item) => item.id !== first.id);
     },
     clearCart: (state) => {
       state.cart = [];
-      console.log(state.cart);
     },
   },
 });

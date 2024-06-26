@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addData, deleteData } from "../data/store/cartSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const Card = ({ item }) => {
   const { data } = useSelector((state) => state.data);
@@ -8,21 +9,17 @@ const Card = ({ item }) => {
   const dispatch = useDispatch();
 
   function handleAdd(name) {
-    // console.log(data);
-
-    // const isItemAdded = cart.find((c) => c._id === item._id);
-
     const addedItems = data.filter((item) => item.name === name);
-    console.log(addedItems);
 
-    const itemname = addedItems[0];
+    let itemname = addedItems[0];
+    itemname = { ...itemname, id: uuidv4() };
     const newcart = cart.includes(name);
-    console.log(newcart);
 
     dispatch(addData(itemname));
   }
 
   function handleDelete(name) {
+    // console.log(name);
     dispatch(deleteData(name));
   }
 
